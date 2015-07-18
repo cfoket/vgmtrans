@@ -63,6 +63,10 @@
 #ifndef _DATETIME_H_
 #define _DATETIME_H_
 
+#ifdef __STRICT_ANSI__
+#undef __STRICT_ANSI__
+#endif
+
 #include <math.h>
 #include <time.h>
 #include <string.h>
@@ -72,7 +76,7 @@
 #include <string>
 
 #ifndef strncasecmp
-#ifdef _MSC_VER
+#ifdef _WIN32
 #define strncasecmp _strnicmp
 #endif
 #endif
