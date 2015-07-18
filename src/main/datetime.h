@@ -771,36 +771,36 @@ public:
 
 	//try to have a canonical format here. this was comment was typed at 2010-oct-04 02:16:44:000
 
-	std::string ToString() const
-	{
-		char tmp[32];
-		sprintf(tmp,"%04d-%s-%02d %02d:%02d:%02d:%03d",get_Year(),monthnames[get_Month()],get_Day(),get_Hour(),get_Minute(),get_Second(),get_Millisecond());
-		return tmp;
-	}
-
-	static bool TryParse(const char* str, DateTime& out)
-	{
-		int year,mon=-1,day,hour,min,sec,ms;
-		char strmon[4];
-		int done = sscanf(str,"%04d-%3s-%02d %02d:%02d:%02d:%03d",&year,strmon,&day,&hour,&min,&sec,&ms);
-		if(done != 7) return false;
-		for(int i=1;i<12;i++)
-			if(!strncasecmp(monthnames[i],strmon,3))
-			{
-				mon=i;
-				break;
-			}
-		if(mon==-1) return false;
-		out = DateTime(year,mon,day,hour,min,sec);
-		return true;
-	}
-
-	static DateTime Parse(const char* str)
-	{
-		DateTime ret;
-		TryParse(str,ret);
-		return ret;
-	}
+//	std::string ToString() const
+//	{
+//		char tmp[32];
+//		sprintf(tmp,"%04d-%s-%02d %02d:%02d:%02d:%03d",get_Year(),monthnames[get_Month()],get_Day(),get_Hour(),get_Minute(),get_Second(),get_Millisecond());
+//		return tmp;
+//	}
+//
+//	static bool TryParse(const char* str, DateTime& out)
+//	{
+//		int year,mon=-1,day,hour,min,sec,ms;
+//		char strmon[4];
+//		int done = sscanf(str,"%04d-%3s-%02d %02d:%02d:%02d:%03d",&year,strmon,&day,&hour,&min,&sec,&ms);
+//		if(done != 7) return false;
+//		for(int i=1;i<12;i++)
+//			if(!strncasecmp(monthnames[i],strmon,3))
+//			{
+//				mon=i;
+//				break;
+//			}
+//		if(mon==-1) return false;
+//		out = DateTime(year,mon,day,hour,min,sec);
+//		return true;
+//	}
+//
+//	static DateTime Parse(const char* str)
+//	{
+//		DateTime ret;
+//		TryParse(str,ret);
+//		return ret;
+//	}
 
 };
 
