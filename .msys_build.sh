@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
+cd `dirname "$0"`/../build
 echo 'C:\MinGW\ /MinGW' > /etc/fstab
-cd src
 mkdir build
 cd build
 cmake .. -G "MSYS Makefiles"
