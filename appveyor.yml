@@ -1,3 +1,8 @@
 
+environment:
+  matrix:
+    - RUN_CMD: "C:\MinGW\msys\1.0\bin\sh --login /c/projects/vgmtrans/.msys_build.sh"
+    - RUN_CMD: "C:\Program Files (x86)\MSBuild\12.0\Bin\MSBuild.exe" "src\VGMTrans_WTL.sln" /verbosity:minimal /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
+
 build_script:
-  - C:\MinGW\msys\1.0\bin\sh --login /c/projects/vgmtrans/.msys_build.sh
+  - cmd: %RUN_CMD%
