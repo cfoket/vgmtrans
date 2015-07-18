@@ -1,4 +1,6 @@
+
 build_script:
+  - set PATH=%PATH:C:\MinGW\bin;=%
   - cd src
   - mkdir build
   - cd build
