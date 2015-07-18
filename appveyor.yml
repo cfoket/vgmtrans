@@ -1,4 +1,5 @@
 build_script:
+  - cd src
   - mkdir build
   - cd build
   - cmake ..
