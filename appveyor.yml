@@ -8,4 +8,6 @@ environment:
 #  - cmd: SET PATH="C:\Qt\5.5\mingw492_32\bin"
 
 build_script:
+  - cmd: dir C:/Qt/5.5/mingw492_32
+  - cmd: dir C:/Qt/5.5/mingw492_32/bin
   - cmd: call %RUN_CMD%
