@@ -63,10 +63,6 @@
 #ifndef _DATETIME_H_
 #define _DATETIME_H_
 
-#ifdef __STRICT_ANSI__
-#undef __STRICT_ANSI__
-#endif
-
 #include <math.h>
 #include <time.h>
 #include <string.h>
