@@ -1,8 +1,4 @@
 
 build_script:
   - set PATH=%PATH:C:\MinGW\bin;=%
-  - cd src
-  - mkdir build
-  - cd build
-  - cmake -G "MinGW Makefiles" ..
-  - make
+  - sh /c/projects/vgmtrans/.msys_build.sh
