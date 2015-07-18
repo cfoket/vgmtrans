@@ -2,5 +2,5 @@ build_script:
   - cd src
   - mkdir build
   - cd build
-  - cmake ..
+  - cmake -G "MinGW Makefiles" ..
   - make
