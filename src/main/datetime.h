@@ -70,11 +70,10 @@
 #include <stdint.h>
 
 #include <string>
-#include <strings.h>
 
 #ifndef strncasecmp
 #ifdef _WIN32
-#define strncasecmp _strnicmp
+#define strncasecmp strnicmp
 #endif
 #endif
 
