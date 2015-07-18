@@ -70,6 +70,7 @@
 #include <stdint.h>
 
 #include <string>
+#include <strings.h>
 
 #ifndef strncasecmp
 #ifdef _WIN32
