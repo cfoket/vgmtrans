@@ -3,5 +3,5 @@
 cd src
 mkdir build
 cd build
-cmake -G "MinGW Makefiles" ..
+cmake -G "MSYS Makefiles" ..
 make
