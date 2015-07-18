@@ -1,4 +1,3 @@
 
 build_script:
-  - set PATH=%PATH:C:\MinGW\bin;=%
-  - sh --login /c/projects/vgmtrans/.msys_build.sh
+  - C:\MinGW\msys\1.0\bin\sh --login /c/projects/vgmtrans/.msys_build.sh
