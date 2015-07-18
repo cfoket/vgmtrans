@@ -72,7 +72,7 @@
 #include <string>
 
 #ifndef strncasecmp
-#ifdef _WIN32
+#ifdef _MSC_VER
 #define strncasecmp _strnicmp
 #endif
 #endif
@@ -573,7 +573,7 @@ public:
 
 	static DateTime get_Now ()
 	{
-#ifdef _ATL_VER
+#ifdef _MSC_VER
 		SYSTEMTIME stTime;
 		GetLocalTime(&stTime);
 		return DateTime(stTime.wYear, stTime.wMonth, stTime.wDay, stTime.wHour, stTime.wMinute, stTime.wSecond, stTime.wMilliseconds);
