@@ -4,5 +4,5 @@ cd `dirname "$0"`/src
 echo 'C:\MinGW\ /MinGW' > /etc/fstab
 mkdir build
 cd build
-cmake -G "MSYS Makefiles" -D CMAKE_C_COMPILER=C:\Qt\5.5\mingw492_32\bin\gcc.exe -D CMAKE_CXX_COMPILER=C:\Qt\5.5\mingw492_32\bin\g++.exe ..
+cmake -G "MSYS Makefiles" -D CMAKE_C_COMPILER=C:/Qt/5.5/mingw492_32/bin/gcc.exe -D CMAKE_CXX_COMPILER=C:/Qt/5.5/mingw492_32/bin/g++.exe ..
 make
