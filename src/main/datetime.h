@@ -69,7 +69,7 @@
 #include <stdio.h>
 #include <stdint.h>
 
-#include <string>
+#include <string.h>
 
 #ifndef strncasecmp
 #ifdef _WIN32
