@@ -9,5 +9,5 @@ environment:
 #  - cmd: SET PATH="C:\Qt\5.5\mingw492_32\bin"
 
 build_script:
-  - set PATH=%MINGW%\bin
+  - set PATH=%MINGW%\bin;%PATH%
   - cmd: call %RUN_CMD%
