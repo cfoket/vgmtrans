@@ -12,6 +12,13 @@
 //#define snprintf _snprintf
 #endif
 
+#if defined(_WIN32) && defined(__MINGW32__) && !defined(__NO_ISOCEXT)
+# define swprintf snwprintf
+//#else
+//# define FMT_SWPRINTF swprintf
+#endif // defined(_WIN32) && defined(__MINGW32__) && !defined(__NO_ISOCEXT)
+
+
 
 #include <assert.h>
 #include <wchar.h>
