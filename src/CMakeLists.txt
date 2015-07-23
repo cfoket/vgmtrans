@@ -41,12 +41,14 @@ find_package(Qt5Widgets REQUIRED)
 
 if(MSVC)
   set(CMAKE_CXX_FLAGS "/EHsc")
+elseif(MINGW)
+  set(CMAKE_CXX_FLAGS "-std=gnu++0x")
 else()
   #set ( CMAKE_CXX_FLAGS "-std=c++11 -stdlib=libstdc++ -g3 -Wall -O0" )
   set ( CMAKE_CXX_FLAGS "-std=c++11 -w -g3 -Wall -O0" )
   #-Wl,-subsystem,windows
   #set ( CMAKE_CXX_FLAGS "-std=c++11 -stdlib=libc++ -g3 -Wall -O0" )
-endif()
+endif(MSVC)
 
 
 include_directories(
