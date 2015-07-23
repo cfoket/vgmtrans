@@ -5,6 +5,12 @@
 #if !defined(PCH_H)
 #define PCH_H
 
+// Fix for error: error: 'swprintf' was not declared in this scope seen in appveyor
+#if defined(__MINGW32__) || defined(__MINGW32_MAJOR_VERSION)
+#undef __STRICT_ANSI__
+#endif
+
+
 #include <assert.h>
 #include <wchar.h>
 #include <cmath>
