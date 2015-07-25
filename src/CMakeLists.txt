@@ -47,10 +47,6 @@ else()
   #-Wl,-subsystem,windows
   #set ( CMAKE_CXX_FLAGS "-std=c++11 -stdlib=libc++ -g3 -Wall -O0" )
 endif(MSVC)
-if(MINGW)
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mno-cygwin")
-endif()
-
 
 
 include_directories(
