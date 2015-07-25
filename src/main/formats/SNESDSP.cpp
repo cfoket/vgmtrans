@@ -474,9 +474,9 @@ void SNESSamp::ConvertToStdWave(uint8_t* buf)
 	{
 		if (dwOffset + k + 9 > GetRawFile()->size())
 		{
-			wchar_t log[512];
-			swprintf(log, 512,  L"\"%s\" unexpected EOF.", name.c_str());
-			pRoot->AddLogItem(new LogItem(log, LOG_LEVEL_WARN, L"SNESSamp"));
+			wstringstream log;
+			log << name << ": unexpected EOF.";
+			pRoot->AddLogItem(new LogItem(log.str().c_str(), LOG_LEVEL_WARN, L"SNESSamp"));
 			break;
 		}
 

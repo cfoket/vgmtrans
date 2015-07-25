@@ -32,6 +32,25 @@ void NDSScanner::SearchForSDAT (RawFile* file)
 }
 
 
+wstring formatChunkName(RawFile* file, bool hasName, uint32_t addr, wchar_t * chunkName, int index)
+{
+	wstring name;
+	if(hasName)
+	{
+		char temp[32];
+		file->GetBytes(addr, 32, temp);
+		string test = std::string(temp);
+		name = wstring(test.begin(), test.end());
+	}
+	else
+	{
+		wstringstream tmpName;
+		tmpName << chunkName << "_" << std::setfill(L'0') << std::setw(4) << std::uppercase << index;
+		name = tmpName.str().c_str();
+	}
+	return name;
+}
+
 // The following is pretty god-awful messy.  I should have created structs for the different
 // blocks and loading the entire blocks at a time.  
 uint32_t NDSScanner::LoadFromSDAT(RawFile* file, uint32_t baseOff)
@@ -76,52 +95,20 @@ uint32_t NDSScanner::LoadFromSDAT(RawFile* file, uint32_t baseOff)
 
 	for (uint32_t i=0; i<nSeqs; i++)
 	{
-		char temp[32];		//that 32 is totally arbitrary, i should change it
-		wchar_t wtemp[32];
-		if(hasSYMB)
-		{
-			file->GetBytes(file->GetWord(pSeqNamePtrList+4+i*4)+SYMBoff, 32, temp);
-			mbstowcs(wtemp, temp, 32);
-		}
-		else
-		{
-			swprintf(wtemp, 32, L"SSEQ_%04d", i);
-		}
-		seqNames.push_back(wtemp);
+		wstring seqName = formatChunkName(file, hasSYMB, file->GetWord(pSeqNamePtrList+4+i*4)+SYMBoff, L"SSEQ", i);
+		seqNames.push_back(seqName);
 	}
 
 	for (uint32_t i=0; i<nBnks; i++)
 	{
-		char temp[32];		//that 32 is totally arbitrary, i should change it
-		wchar_t wtemp[32];
-
-		if(hasSYMB)
-		{
-			file->GetBytes(file->GetWord(pBnkNamePtrList+4+i*4)+SYMBoff, 32, temp);
-			mbstowcs(wtemp, temp, 32);
-		}
-		else
-		{
-			swprintf(wtemp, 32, L"SBNK_%04d", i);
-		}
-		bnkNames.push_back(wtemp);
+		wstring bnkName = formatChunkName(file, hasSYMB, file->GetWord(pBnkNamePtrList+4+i*4)+SYMBoff, L"SBNK", i);
+		bnkNames.push_back(bnkName);
 	}
 
 	for (uint32_t i=0; i<nWAs; i++)
 	{
-		char temp[32];		//that 32 is totally arbitrary, i should change it
-		wchar_t wtemp[32];
-
-		if(hasSYMB)
-		{
-			file->GetBytes(file->GetWord(pWANamePtrList+4+i*4)+SYMBoff, 32, temp);
-			mbstowcs(wtemp, temp, 32);
-		}
-		else
-		{
-			swprintf(wtemp, 32, L"SWAR_%04d", i);
-		}
-		waNames.push_back(wtemp);
+		wstring swarName = formatChunkName(file, hasSYMB, file->GetWord(pWANamePtrList+4+i*4)+SYMBoff, L"SWAR", i);
+		waNames.push_back(swarName);
 	}
 
 	uint32_t pSeqInfoPtrList = file->GetWord(INFOoff + 8) + INFOoff;

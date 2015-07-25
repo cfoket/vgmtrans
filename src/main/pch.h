@@ -6,17 +6,17 @@
 #define PCH_H
 
 // Fix for error: error: 'swprintf' was not declared in this scope seen in appveyor
-#if defined(__MINGW32__) || defined(__MINGW32_MAJOR_VERSION)
-#undef __STRICT_ANSI__
-#define swprintf _snwprintf
-//#define snprintf _snprintf
-#endif
-
-#if defined(_WIN32) && defined(__MINGW32__) && !defined(__NO_ISOCEXT)
-# define swprintf snwprintf
-//#else
-//# define FMT_SWPRINTF swprintf
-#endif // defined(_WIN32) && defined(__MINGW32__) && !defined(__NO_ISOCEXT)
+//#if defined(__MINGW32__) || defined(__MINGW32_MAJOR_VERSION)
+////#undef __STRICT_ANSI__
+////#define swprintf _snwprintf
+////#define snprintf _snprintf
+//#endif
+//
+//#if defined(_WIN32) && defined(__MINGW32__) && !defined(__NO_ISOCEXT)
+//# define swprintf snwprintf
+////#else
+////# define FMT_SWPRINTF swprintf
+//#endif // defined(_WIN32) && defined(__MINGW32__) && !defined(__NO_ISOCEXT)
 
 
 

@@ -730,10 +730,10 @@ bool NinSnesSection::GetTrackPointers()
 		track->shared = &parentSeq->sharedTrackData[trackIndex];
 		aTracks.push_back(track);
 
-		wchar_t name[32];
-		swprintf(name, 32, L"Track Pointer #%d", trackIndex + 1);
+		wstringstream name;
+		name << L"Track Pointer #" << trackIndex+1;
+		header->AddSimpleItem(curOffset, 2, name.str().c_str());
 
-		header->AddSimpleItem(curOffset, 2, name);
 		curOffset += 2;
 	}
 

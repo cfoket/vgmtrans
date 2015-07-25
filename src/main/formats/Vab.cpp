@@ -100,9 +100,9 @@ bool Vab::GetInstrPointers()
 		uint8_t numTones = GetByte(offCurrProg);
 		if (numTones > 32)
 		{
-			wchar_t log[512];
-			swprintf(log, 512,  L"Too many tones (%u) in Program #%u.", numTones, i);
-			pRoot->AddLogItem(new LogItem(log, LOG_LEVEL_WARN, L"Vab"));
+			wstringstream log;
+			log << L"Too many tones (" << numTones << L") in Program #" << i;
+			pRoot->AddLogItem(new LogItem(log.str().c_str(), LOG_LEVEL_WARN, L"Vab"));
 		}
 		else if (numTones != 0)
 		{
@@ -129,7 +129,6 @@ bool Vab::GetInstrPointers()
 
 	if ((offVAGOffsets + 2 * 256) <= nEndOffset)
 	{
-		wchar_t name[256];
 		std::vector<SizeOffsetPair> vagLocations;
 		uint32_t totalVAGSize = 0;
 		VGMHeader* vagOffsetHdr = AddHeader(offVAGOffsets, 2 * 256, L"VAG Pointer Table");
@@ -154,8 +153,9 @@ bool Vab::GetInstrPointers()
 				vagSize = GetShort(offVAGOffsets + (i + 1) * 2) * 8;
 			}
 
-			swprintf(name, 256,  L"VAG Size /8 #%u", i + 1);
-			vagOffsetHdr->AddSimpleItem(offVAGOffsets + (i + 1) * 2, 2, name);
+			wstringstream name;
+			name << L"VAG Size /8 #" << i+1;
+			vagOffsetHdr->AddSimpleItem(offVAGOffsets + (i + 1) * 2, 2, name.str().c_str());
 
 			if (vagOffset + vagSize <= nEndOffset)
 			{
@@ -164,9 +164,13 @@ bool Vab::GetInstrPointers()
 			}
 			else
 			{
-				wchar_t log[512];
-				swprintf(log, 512,  L"VAG #%u pointer (offset=0x%08X, size=%u) is invalid.", i + 1, vagOffset, vagSize);
-				pRoot->AddLogItem(new LogItem(log, LOG_LEVEL_WARN, L"Vab"));
+				wstringstream log;
+				log << L"VAG " << i+1 << L" pointer (offset=0x" << std::hex << std::setfill(L'0') << std::setw(8)
+					<< vagOffset << L" size=" << vagSize << L") is invalid";
+				// TODO: Reallow usage of swprintf for complex formatting if we can figure out why appveyor msys build is failing on it
+//				wchar_t log[512];
+//				swprintf(log, 512,  L"VAG #%u pointer (offset=0x%08X, size=%u) is invalid.", i + 1, vagOffset, vagSize);
+				pRoot->AddLogItem(new LogItem(log.str().c_str(), LOG_LEVEL_WARN, L"Vab"));
 			}
 		}
 		unLength = (offVAGOffsets + 2 * 256) - dwOffset;

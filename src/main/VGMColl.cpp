@@ -327,9 +327,9 @@ bool VGMColl::MainDLSCreation(DLSFile& dls)
 
 				if (realSampNum >= finalSamps.size())
 				{
-					wchar_t log[256];
-					swprintf(log, 256, L"Sample %u does not exist.", realSampNum);
-					pRoot->AddLogItem(new LogItem(log, LOG_LEVEL_ERR, L"VGMColl"));
+					wstringstream log;
+					log << L"Sample " << realSampNum << "does not exist.";
+					pRoot->AddLogItem(new LogItem(log.str().c_str(), LOG_LEVEL_ERR, L"VGMColl"));
 					realSampNum = finalSamps.size() - 1;
 				}
 
@@ -554,9 +554,9 @@ SynthFile* VGMColl::CreateSynthFile()
 
 				if (realSampNum >= finalSamps.size())
 				{
-					wchar_t log[256];
-					swprintf(log, 256, L"Sample %u does not exist.", realSampNum);
-					pRoot->AddLogItem(new LogItem(log, LOG_LEVEL_ERR, L"VGMColl"));
+					wstringstream log;
+					log << L"Sample " << realSampNum << L" does not exist.";
+					pRoot->AddLogItem(new LogItem(log.str().c_str(), LOG_LEVEL_ERR, L"VGMColl"));
 					realSampNum = finalSamps.size() - 1;
 				}
 
