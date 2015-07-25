@@ -30,10 +30,10 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 # Instruct CMake to run moc automatically when needed.
 set(CMAKE_AUTOMOC ON)
 ## We need add -DQT_WIDGETS_LIB when using QtWidgets in Qt 5.
-add_definitions(${Qt5Widgets_DEFINITIONS})
+#add_definitions(${Qt5Widgets_DEFINITIONS})
 ## Executables fail to build with Qt 5 in the default configuration
 ## without -fPIE. We add that here.
-set(CMAKE_CXX_FLAGS "${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS}")
+#set(CMAKE_CXX_FLAGS "${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS}")
 
 # Find the QtWidgets library
 find_package(Qt5Widgets REQUIRED)
@@ -41,14 +41,16 @@ find_package(Qt5Widgets REQUIRED)
 
 if(MSVC)
   set(CMAKE_CXX_FLAGS "/EHsc")
-#elseif(MINGW)
-#  set(CMAKE_CXX_FLAGS "-std=gnu++0x")
 else()
   #set ( CMAKE_CXX_FLAGS "-std=c++11 -stdlib=libstdc++ -g3 -Wall -O0" )
   set ( CMAKE_CXX_FLAGS "-std=c++11 -w -g3 -Wall -O0" )
   #-Wl,-subsystem,windows
   #set ( CMAKE_CXX_FLAGS "-std=c++11 -stdlib=libc++ -g3 -Wall -O0" )
 endif(MSVC)
+if(MINGW)
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mno-cygwin")
+endif()
+
 
 
 include_directories(
