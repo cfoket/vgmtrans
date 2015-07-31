@@ -50,8 +50,8 @@ endif(MSVC)
 
 
 include_directories(
-    lib/zlib/include
-    lib/minizip
+#    lib/zlib/include
+#    lib/minizip
     lib/tinyxml
     lib/fluidsynth/include
     lib/fluidsynth/mem_sfloader
