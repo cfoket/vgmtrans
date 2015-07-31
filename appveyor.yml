@@ -12,8 +12,8 @@ install:
   - appveyor DownloadFile "http://kent.dl.sourceforge.net/project/msys2/Base/%MSYS2_ARCH%/msys2-base-%MSYS2_ARCH%-%MSYS2_BASEVER%.tar.xz" -FileName "msys2.tar.xz"
   - 7z x msys2.tar.xz
   - 7z x msys2.tar > NUL
-  - msys64\usr\bin\bash -lc ""
-  - msys64\usr\bin\bash -lc "for i in {1..3}; do pacman --noconfirm -Suy mingw-w64-%MSYS2_ARCH%-{ragel,freetype,icu,gettext} libtool pkg-config gcc make autoconf automake perl && break || sleep 15; done"
+  - msys32\usr\bin\bash -lc ""
+  - msys32\usr\bin\bash -lc "for i in {1..3}; do pacman --noconfirm -Suy mingw-w64-%MSYS2_ARCH%-{ragel,freetype,icu,gettext} libtool pkg-config gcc make autoconf automake perl && break || sleep 15; done"
 
 
 #install:
