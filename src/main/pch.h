@@ -18,11 +18,6 @@
 ////# define FMT_SWPRINTF swprintf
 //#endif // defined(_WIN32) && defined(__MINGW32__) && !defined(__NO_ISOCEXT)
 
-#ifdef WIN32
-#define ftello ftell
-#define fseeko fseek
-#endif
-
 #include <assert.h>
 #include <wchar.h>
 #include <cmath>
