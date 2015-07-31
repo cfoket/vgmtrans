@@ -22,4 +22,4 @@ install:
 build_script:
 #  - set PATH=%MINGW%\bin;%PATH%
 #  - cmd: call %RUN_CMD%
-  - msys32\usr\bin\bash -lc "cd $APPVEYOR_BUILD_FOLDER; PATH=$PATH:/mingw64/bin:/mingw32/bin; exec 0</dev/null; ./msys_build.sh; make"
+  - msys32\usr\bin\bash -lc "cd $APPVEYOR_BUILD_FOLDER; PATH=$PATH:/mingw64/bin:/mingw32/bin; exec 0</dev/null; ./.msys_build.sh"
