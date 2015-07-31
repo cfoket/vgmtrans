@@ -17,7 +17,8 @@ ENDIF(WIN32)
 
 set(CMAKE_PREFIX_PATH
     ${CMAKE_PREFIX_PATH}
-    "${CMAKE_SOURCE_DIR}/contrib/${CMAKE_LIBRARY_ARCHITECTURE}")
+    "${CMAKE_SOURCE_DIR}/contrib/${CMAKE_LIBRARY_ARCHITECTURE}"
+    "${CMAKE_SOURCE_DIR}/contrib/${CMAKE_LIBRARY_ARCHITECTURE}/lib")
 message(STATUS "PREFIX PATH: " ${CMAKE_PREFIX_PATH})
 
 set(CMAKE_MODULE_PATH
@@ -50,8 +51,8 @@ endif(MSVC)
 
 
 include_directories(
-#    lib/zlib/include
-#    lib/minizip
+    lib/zlib/include
+    lib/minizip
     lib/tinyxml
     lib/fluidsynth/include
     lib/fluidsynth/mem_sfloader
@@ -497,13 +498,13 @@ if (MSVC)
     add_definitions(-DVGMTRANS_FOR_QT -DZLIB_WINAPI)
 
 else (MSVC)
-#    find_package (ZLIB REQUIRED)
-#    message(STATUS "ZLIB INCLUDE DIR: " ${ZLIB_INCLUDE_DIR})
-#    message(STATUS "ZLIB LIB DIR: " ${ZLIB_LIBRARY})
-#    if (ZLIB_FOUND)
-#      include_directories(${ZLIB_INCLUDE_DIRS})
-#      target_link_libraries (vgmtrans ${ZLIB_LIBRARIES})
-#    endif (ZLIB_FOUND)
+    find_package (ZLIB REQUIRED)
+    message(STATUS "ZLIB INCLUDE DIR: " ${ZLIB_INCLUDE_DIR})
+    message(STATUS "ZLIB LIB DIR: " ${ZLIB_LIBRARY})
+    if (ZLIB_FOUND)
+      include_directories(${ZLIB_INCLUDE_DIRS})
+      target_link_libraries (vgmtrans ${ZLIB_LIBRARIES})
+    endif (ZLIB_FOUND)
 
 
     find_package (FluidSynth REQUIRED)
