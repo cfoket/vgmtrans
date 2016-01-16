@@ -8,16 +8,19 @@ osx_image: xcode7.1
 language:
   - objective-c
 
-#env:
-#  - CMAKE_PREFIX_PATH="/usr/local/opt/qt5"
+env:
+  - CMAKE_PREFIX_PATH="/usr/local/opt/qt5"
 
-#before_install:
-#  - brew update
+before_install:
+  - brew update
 
-#install:
-#  - brew install qt5
-#  - brew install fluidsynth
+install:
+  - brew install qt5
+  - brew install fluidsynth
+  - brew install cmake
 
 script:
   - mkdir build && cd build
-  - sh ../extras/package/macosx/build.sh -q
+  - cmake ..
+  - make
+
