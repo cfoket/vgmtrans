@@ -156,3 +156,66 @@ if (APPLE)
             )
 
 endif (APPLE)
+
+if (UNIX AND NOT APPLE)
+
+    find_library(PTHREAD_LIBRARY pthread)
+    find_library(GOBJECT_LIBRARY gobject-2.0)
+    find_library(X11_LIBRARY X11)
+    find_library(DL_LIBRARY dl)
+    find_library(PCRE16_LIBRARY pcre16)
+    find_library(PNG_LIBRARY png)
+    find_library(XCB_LIBRARY xcb)
+    find_library(XI_LIBRARY Xi)
+    find_library(XCB_XKB_LIBRARY xcb-xkb)
+    find_library(FREETYPE_LIBRARY freetype)
+    find_library(XCB_KEYSYMS_LIBRARY xcb-keysyms)
+    find_library(XCB_SYNC_LIBRARY xcb-sync)
+    find_library(XCB_XFIXES_LIBRARY xcb-xfixes)
+    find_library(XCB_ICCCM_LIBRARY xcb-icccm)
+    find_library(XCB_SHAPE_LIBRARY xcb-shape)
+    find_library(XCB_SHM_LIBRARY xcb-shm)
+    find_library(XCB_IMAGE_LIBRARY xcb-image)
+    find_library(XCB_RENDER_LIBRARY xcb-render)
+    find_library(XCB_RENDER_UTIL_LIBRARY xcb-render-util)
+    find_library(SM_LIBRARY SM)
+    find_library(ICE_LIBRARY ICE)
+    find_library(X11_XCB_LIBRARY X11-xcb)
+    find_library(XCB_RANDR_LIBRARY xcb-randr)
+    find_library(FONTCONFIG_LIBRARY fontconfig)
+
+    target_link_libraries(vgmtrans
+            ${PROJECT_SOURCE_DIR}/contrib/${CMAKE_LIBRARY_ARCHITECTURE}/lib/libQt5Gui.a
+            ${PROJECT_SOURCE_DIR}/contrib/${CMAKE_LIBRARY_ARCHITECTURE}/lib/libQt5Core.a
+            ${PROJECT_SOURCE_DIR}/contrib/${CMAKE_LIBRARY_ARCHITECTURE}/lib/libqxcb.a
+            ${PROJECT_SOURCE_DIR}/contrib/${CMAKE_LIBRARY_ARCHITECTURE}/lib/libQt5XcbQpa.a
+            ${PROJECT_SOURCE_DIR}/contrib/${CMAKE_LIBRARY_ARCHITECTURE}/lib/libQt5PlatformSupport.a
+            ${PROJECT_SOURCE_DIR}/contrib/${CMAKE_LIBRARY_ARCHITECTURE}/lib/libQt5DBus.a
+
+            ${PTHREAD_LIBRARY}
+            ${GOBJECT_LIBRARY}
+            ${X11_LIBRARY}
+            ${DL_LIBRARY}
+            ${PCRE16_LIBRARY}
+            ${PNG_LIBRARY}
+            ${XCB_LIBRARY}
+            ${XI_LIBRARY}
+            ${XCB_XKB_LIBRARY}
+            ${FREETYPE_LIBRARY}
+            ${XCB_KEYSYMS_LIBRARY}
+            ${XCB_SYNC_LIBRARY}
+            ${XCB_XFIXES_LIBRARY}
+            ${XCB_ICCCM_LIBRARY}
+            ${XCB_SHAPE_LIBRARY}
+            ${XCB_SHM_LIBRARY}
+            ${XCB_IMAGE_LIBRARY}
+            ${XCB_RENDER_LIBRARY}
+            ${XCB_RENDER_UTIL_LIBRARY}
+            ${SM_LIBRARY}
+            ${ICE_LIBRARY}
+            ${X11_XCB_LIBRARY}
+            ${XCB_RANDR_LIBRARY}
+            ${FONTCONFIG_LIBRARY}
+            )
+
+endif (UNIX AND NOT APPLE)

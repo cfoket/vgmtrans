@@ -29,6 +29,9 @@ ifdef HAVE_WIN32
 #QT_PLATFORM := -xplatform win32-g++ -device-option CROSS_COMPILE=$(HOST)-
 QT_PLATFORM := -platform win32-g++
 endif
+ifdef HAVE_LINUX
+EXTRA_CONFIG_OPTIONS := -qt-xcb
+endif
 
 .qt: qt
 	cd $< && ./configure $(QT_PLATFORM) $(EXTRA_CONFIG_OPTIONS) -static -release -no-sql-sqlite -no-gif -qt-libjpeg -no-openssl -no-opengl --no-harfbuzz -opensource -confirm-license
@@ -48,6 +51,11 @@ ifdef HAVE_WIN32
 endif
 	#install $</plugins/platforms/libqwindows.a "$(PREFIX)/lib/libqwindows.a"
 	#install -d $</plugins/accessible/libqtaccessiblewidgets.a "$(PREFIX)/lib/libqtaccessiblewidgets.a"
+ifdef HAVE_LINUX
+	cp $</lib/libQt5XcbQpa.a "$(PREFIX)/lib"
+	cp $</lib/libQt5PlatformSupport.a "$(PREFIX)/lib"
+	cp $</lib/libQt5DBus.a "$(PREFIX)/lib"
+endif
 	# INSTALLING HEADERS
 	for h in corelib gui widgets; do \
 		install -d "$(PREFIX)/include/src/$${h}" ; \
